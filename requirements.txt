@@ -1,0 +1,9 @@
+# Required pacakges for this project
+requests
+pandas
+pyarrow
+openpyxl
+numpy
+seaborn
+bokeh
+matplotlib

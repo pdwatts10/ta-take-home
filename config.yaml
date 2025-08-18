@@ -1,0 +1,51 @@
+api_query:
+  api: "https://ssd-api.jpl.nasa.gov/mdesign.api"
+  year: 2027
+  criterion_code: 2
+  query_limit: 10000
+  skip_fetch: True
+  save_results: True
+  save_path: "asteroid_data"
+selection_filters:
+  1:
+    param: "vinf_arr"
+    operator: "<="
+    threshold: 1.1
+  2:
+    param: "c3_dep"
+    operator: "<="
+    threshold: 10.0
+  3:
+    param: "tof"
+    operator: "<="
+    threshold: 365
+  4:
+    param: "condition_code"
+    operator: "<="
+    threshold: 3
+scoring_criteria:
+  1:
+    param: "vinf_arr"
+    weight: 0.20
+    normalization: 1.1
+  2:
+    param: "c3_dep"
+    weight: 0.25
+    normalization: 10.0
+  3:
+    param: "tof"
+    weight: 0.30
+    normalization: 365.0
+  4:
+    param: "condition_code"
+    weight: 0.125
+    normalization: 3.0
+  5:
+    param: "H"
+    weight: 0.125
+    normalization: 'max'
+vehicle_data:
+  path: 'launch_vehicle_configs.csv'
+  dry_mass_targs: [500,750,1000]
+  isp_targs: [220,340,390]
+  
