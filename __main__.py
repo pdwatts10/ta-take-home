@@ -268,16 +268,6 @@ def interpolate_payload_mass(vehicle_data:pd.DataFrame,characteristic_energy: fl
     
     return payload_capacity
 
-def plot_payload_capacity(vehicle_data:pd.DataFrame,characteristic_energy:float,payload_capacity:dict):
-
-    # read in characteristic energy headings, ensure we strip out non-numeric info and parse into numeric array-like
-    c3_array = vehicle_data.columns
-    c3_array = [float(re.findall(r'[0-9]{1,}$',ceng)[0]) for ceng in c3_array]
-
-    
-
-    pass
-
 def main(config_path:str):
     query, filters, scoring_criteria, vehicle_data_path, dry_mass_targs, isp_targs = parse_config(config_path)
 
