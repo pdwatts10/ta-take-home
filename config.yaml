@@ -38,11 +38,11 @@ scoring_criteria:
     normalization: 365.0
   4:
     param: "condition_code"
-    weight: 0.125
+    weight: 0.10
     normalization: 3.0
   5:
     param: "H"
-    weight: 0.125
+    weight: 0.15
     normalization: 'max'
 vehicle_data:
   path: 'launch_vehicle_configs.csv'
