@@ -108,6 +108,8 @@ def process_data(query: APIQuery, data: dict|pd.DataFrame, filters: dict[DataFil
     # otherwise, construct a dataframe from the web request JSON data for data analysis later
     if isinstance(data,dict):
         df = pd.DataFrame(data['data'],columns=data['fields'])
+        # if we're passing in JSON data, we should save now after constructing the dataframe
+        # saving now before we filter the results means we can adjust our data filters later without re-running the web request
         if query.save_results:
             df.to_parquet(query.save_path+'.parquet',engine='pyarrow')
             # df.to_csv(query.save_path+'.csv')
@@ -127,12 +129,6 @@ def process_data(query: APIQuery, data: dict|pd.DataFrame, filters: dict[DataFil
 
         df = df.query(df_filter)
     
-    # Save the dataframe for later use to skip web requests
-    # exporting a csv or xlsx is also helpful to manually review outputs, debug problems with the query
-    if query.save_results:
-        df.to_parquet(query.save_path+'.parquet',engine='pyarrow')
-        # df.to_csv(query.save_path+'.csv')
-
     return df
 
 def plot_asteroid_data(asteroid_data:pd.DataFrame,scoring_criteria:dict[Scoring]):
