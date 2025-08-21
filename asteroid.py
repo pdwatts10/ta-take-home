@@ -112,12 +112,10 @@ def process_data(query: APIQuery, data: dict|pd.DataFrame, filters: dict[DataFil
         # saving now before we filter the results means we can adjust our data filters later without re-running the web request
         if query.save_results:
             df.to_parquet(query.save_path+'.parquet',engine='pyarrow')
-            # df.to_csv(query.save_path+'.csv')
     else:
         df = data
         
     # if we passed an any queries, parse those and filter the data frame
-    # tehcnically could skip this step if we saved a filtered dataframe already, but it's safer to assume we need to filter it every time
     if filters:
         df_filter = []
         for key in filters.keys():
